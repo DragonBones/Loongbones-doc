@@ -17,7 +17,7 @@ export const en = defineConfig({
     },
 
     editLink: {
-      pattern: 'https://github.com/dragonbones/loongbones-doc/:path',
+      pattern: 'https://github.com/dragonbones/loongbones-doc/blob/main/:path',
       text: 'Edit this page on GitHub'
     },
 
