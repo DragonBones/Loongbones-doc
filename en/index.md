@@ -13,8 +13,8 @@ hero:
       text: Get Started
       link: /tutorial/index
     - theme: alt
-      text: What is LoongBones?
-      link: /tutorial/loongbones
+      text: LoongScales Docs
+      link: /en/loongscales/
     - theme: alt
       text: GitHub
       link: https://github.com/dragonbones/
@@ -35,6 +35,9 @@ features:
   - icon: 🚀
     title: Cross-Platform Runtime
     details: Supports multiple game platforms including Pixi, Cocos, Unity, Unreal, and it's really fast!
+  - icon: 🐉
+    title: LoongScales
+    details: A layer-based image editor in the browser, with built-in AI generation / background removal / image splitting, and two-way sync with DragonBones materials.
 ---
 <style>
 :root {

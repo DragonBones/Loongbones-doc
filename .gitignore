@@ -18,3 +18,5 @@ TODOs.md
 *.timestamp-*.mjs
 .vitepress/cache/*
 .vitepress/dist/
+.codebuddy/
+.workbuddy/

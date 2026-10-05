@@ -12,12 +12,13 @@ export const en = defineConfig({
     nav: nav(),
 
     sidebar: {
-      '/tutorial/': { base: '/tutorial/', items: sidebarTutorial() },
-      '/editor/': { base: '/editor/', items: sidebarEditor() },
+      '/en/tutorial/': { base: '/en/tutorial/', items: sidebarTutorial() },
+      '/en/editor/': { base: '/en/editor/', items: sidebarEditor() },
+      '/en/loongscales/': { base: '/en/loongscales/', items: sidebarLoongscales() },
     },
 
     editLink: {
-      pattern: 'https://github.com/dragonbones/loongbones-doc/blob/main/:path',
+      pattern: 'https://github.com/dragonbones/dragonbones-doc/:path',
       text: 'Edit this page on GitHub'
     },
 
@@ -57,13 +58,25 @@ function nav(): DefaultTheme.NavItem[] {
   return [
     {
       text: 'Getting Started',
-      link: '/tutorial/index',
+      link: '/en/tutorial/index',
       activeMatch: '/tutorial/'
     },
     {
       text: 'Editor Documentation',
-      link: '/editor/index',
+      link: '/en/editor/index',
       activeMatch: '/editor/'
+    },
+    {
+      text: 'LoongScales',
+      activeMatch: '/loongscales/',
+      items: [
+        { text: 'Overview', link: '/en/loongscales/' },
+        { text: 'Quick Start', link: '/en/loongscales/quickstart' },
+        { text: 'Toolbox', link: '/en/loongscales/tools' },
+        { text: 'Layers', link: '/en/loongscales/layers' },
+        { text: 'AI Assistant', link: '/en/loongscales/ai' },
+        { text: 'DragonBones Sync', link: '/en/loongscales/loongbones-sync' }
+      ]
     },
     {
       text: pkg.version,
@@ -235,6 +248,49 @@ function sidebarEditor(): DefaultTheme.SidebarItem[] {
         { text: 'Export Other Data Files', link: 'export-other-data' },
         { text: 'Export Images or Sprite Sheets', link: 'export-image' },
         { text: 'Atlas Configuration', link: 'export-atlas' },
+      ]
+    }
+  ]
+}
+
+function sidebarLoongscales(): DefaultTheme.SidebarItem[] {
+  return [
+    {
+      text: 'Getting Started',
+      collapsed: false,
+      items: [
+        { text: 'Product Overview', link: 'index' },
+        { text: 'Quick Start & Interface', link: 'quickstart' },
+        { text: 'Canvas & View', link: 'canvas' }
+      ]
+    },
+    {
+      text: 'Core Editing',
+      collapsed: false,
+      items: [
+        { text: 'Toolbox', link: 'tools' },
+        { text: 'Layer System', link: 'layers' },
+        { text: 'Non-destructive Editing', link: 'adjustments' },
+        { text: 'Selections & Masks', link: 'selection' },
+        { text: 'Text & Vector', link: 'text-vector' }
+      ]
+    },
+    {
+      text: 'AI & DragonBones',
+      collapsed: false,
+      items: [
+        { text: 'AI Assistant', link: 'ai' },
+        { text: 'Working with DragonBones', link: 'loongbones-sync' }
+      ]
+    },
+    {
+      text: 'Reference',
+      collapsed: false,
+      items: [
+        { text: 'File Exchange: PSD & Local Save', link: 'files' },
+        { text: 'Undo, Redo & History', link: 'history' },
+        { text: 'Keyboard Shortcuts', link: 'shortcuts' },
+        { text: 'FAQ', link: 'faq' }
       ]
     }
   ]

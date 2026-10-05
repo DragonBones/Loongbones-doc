@@ -13,8 +13,8 @@ hero:
       text: 快速开始
       link: /tutorial/index
     - theme: alt
-      text: 什么是龙骨动画?
-      link: /tutorial/loongbones
+      text: 龙鳞使用说明
+      link: /loongscales/
     - theme: alt
       text: GitHub
       link: https://github.com/dragonbones/
@@ -35,6 +35,9 @@ features:
   - icon: 🚀
     title: 跨平台的运行时
     details: 支持Pixi，cocos，Unity，Unreal等多种游戏平台，而且速度真的很快！
+  - icon: 🐉
+    title: 龙鳞 LoongScales
+    details: 浏览器里的分层图片编辑器，内置 AI 生图 / 去背景 / 拆图，与龙骨动画素材双向同步。
 ---
 <style>
 :root {

@@ -12,8 +12,9 @@ export const zh = defineConfig({
     nav: nav(),
 
     sidebar: {
-      '/zh/tutorial/': { base: '/zh/tutorial/', items: sidebarTutorial() },
-      '/zh/editor/': { base: '/zh/editor/', items: sidebarEditor() },
+      '/tutorial/': { base: '/tutorial/', items: sidebarTutorial() },
+      '/editor/': { base: '/editor/', items: sidebarEditor() },
+      '/loongscales/': { base: '/loongscales/', items: sidebarLoongscales() },
     },
 
     editLink: {
@@ -57,13 +58,25 @@ function nav(): DefaultTheme.NavItem[] {
   return [
     {
       text: '新手引导',
-      link: '/zh/tutorial/index',
-      activeMatch: '/zh/tutorial/'
+      link: '/tutorial/index',
+      activeMatch: '/tutorial/'
     },
     {
       text: '编辑器文档',
-      link: '/zh/editor/index',
-      activeMatch: '/zh/editor/'
+      link: '/editor/index',
+      activeMatch: '/editor/'
+    },
+    {
+      text: '龙鳞 LoongScales',
+      activeMatch: '/loongscales/',
+      items: [
+        { text: '产品简介', link: '/loongscales/' },
+        { text: '快速上手', link: '/loongscales/quickstart' },
+        { text: '工具箱', link: '/loongscales/tools' },
+        { text: '图层系统', link: '/loongscales/layers' },
+        { text: 'AI 助手', link: '/loongscales/ai' },
+        { text: '与龙骨协同', link: '/loongscales/loongbones-sync' }
+      ]
     },
     {
       text: pkg.version,
@@ -235,6 +248,49 @@ function sidebarEditor(): DefaultTheme.SidebarItem[] {
         { text: '导出其他数据文件', link: 'export-other-data' },
         { text: '导出图片或者序列帧', link: 'export-image' },
         { text: '图片集的配置', link: 'export-atlas' },
+      ]
+    }
+  ]
+}
+
+function sidebarLoongscales(): DefaultTheme.SidebarItem[] {
+  return [
+    {
+      text: '入门',
+      collapsed: false,
+      items: [
+        { text: '产品简介', link: 'index' },
+        { text: '快速上手与界面布局', link: 'quickstart' },
+        { text: '画布与视图', link: 'canvas' }
+      ]
+    },
+    {
+      text: '核心编辑',
+      collapsed: false,
+      items: [
+        { text: '工具箱详解', link: 'tools' },
+        { text: '图层系统', link: 'layers' },
+        { text: '非破坏性编辑', link: 'adjustments' },
+        { text: '选区与蒙版', link: 'selection' },
+        { text: '文字与矢量', link: 'text-vector' }
+      ]
+    },
+    {
+      text: 'AI 与龙骨协同',
+      collapsed: false,
+      items: [
+        { text: 'AI 智能助手', link: 'ai' },
+        { text: '与龙骨动画协同', link: 'loongbones-sync' }
+      ]
+    },
+    {
+      text: '参考',
+      collapsed: false,
+      items: [
+        { text: '文件交换：PSD 与本地保存', link: 'files' },
+        { text: '撤销、重做与历史', link: 'history' },
+        { text: '快捷键速查表', link: 'shortcuts' },
+        { text: '常见问题 FAQ', link: 'faq' }
       ]
     }
   ]

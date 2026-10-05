@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <rect width="800" height="450" fill="#f0f0f3"/>
+  <rect x="6" y="6" width="788" height="438" fill="none" stroke="#c9c9d4" stroke-width="2" stroke-dasharray="10 8" rx="10"/>
+  <text x="400" y="225" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="26" fill="#9a9aa6" text-anchor="middle">图片待补充 / Image pending</text>
+</svg>
