@@ -16,7 +16,7 @@ Like Photoshop, it can paint, color-grade, manage layers and apply effects; on t
 
 | Tool | Role | Relationship with LoongScales |
 |---|---|---|
-| **LoongBones** | 2D skeletal animation platform (a competitor to Spine) | Binds bones and creates animations |
+| **LoongBones** | 2D skeletal animation platform (similar to Spine, Live2D) | Binds bones and creates animations |
 | **LoongScales** | Original-art / material retouching editor | Paints original art, splits layers, reskins, runs AI generation |
 
 A LoongBones character is usually assembled from many "material images" (body, arm, hair…). Each material maps to **one raster layer** in LoongScales. LoongScales and LoongBones can **sync bidirectionally**:

@@ -3,7 +3,7 @@
 | Function | Shortcut |
 |---|---|
 | Undo / Redo | `Ctrl+Z` / `Ctrl+Y` (or `Ctrl+Shift+Z`) |
-| Free transform | `Ctrl+T` |
+| Free transform | `R` |
 | Toggle clipping mask | `Ctrl+Alt+G` |
 | Select all / Deselect / Inverse | `Ctrl+A` / `Ctrl+D` / `Ctrl+Shift+I` |
 | Cut / Copy / Paste | `Ctrl+X` / `Ctrl+C` / `Ctrl+V` |
@@ -14,3 +14,4 @@
 | Delete layer / Clear selection pixels | `Delete` / `Backspace` |
 | Nudge layer (step 10) | Arrow keys (hold `Shift`) |
 | Apply/Cancel (crop·transform·warp·pen) | `Enter` apply / `Esc` cancel |
+> For more shortcuts, click the shortcuts button at the top.

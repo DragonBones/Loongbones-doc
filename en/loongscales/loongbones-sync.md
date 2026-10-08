@@ -13,8 +13,7 @@ This is LoongScales' most unique value: **it is the retouching and splitting wor
 In the host (LoongBones) click "Edit material with LoongScales"; LoongScales will:
 
 1. Pull the bitmaps from the LoongBones library (including sprite-sheet images) in, each as a bound raster layer;
-2. Auto-set the canvas size by the outer bounding box;
-3. You can then retouch each one and run AI transformations in LoongScales.
+2. You can then retouch each one and run AI transformations in LoongScales.
 
 > If a material in LoongBones no longer exists on the LoongScales side, the pull sync will ask whether to delete the corresponding LoongScales layer (kept by default; deleted only on confirm).
 
@@ -25,6 +24,8 @@ After editing, click **"Sync to LoongBones"** (push) in the top bar / host; Loon
 1. Collect **bound** raster layers whose **content changed**;
 2. Upload only the "pixel-containing region" cropped (saves size), and write the result back to the LoongBones library (idempotent update by association key);
 3. **Will not delete** existing LoongBones materials — if you delete a layer in LoongScales, it won't reverse-delete the LoongBones resource (avoids breaking animation bone references).
+4. On the **first** sync, it automatically creates the corresponding slots on the LoongBones Stage and places each raster layer on the stage, ready for bone binding and animation right away.
+5. On **later** syncs it only updates already-bound materials and does not create new slots.
 
 ### First push vs later pushes (document, stage & draft box)
 
@@ -36,14 +37,9 @@ The behavior differs between syncing a LoongScales work to LoongBones the **firs
 - **Subsequent syncs to LoongBones**:
   - The document and existing slots already exist; LoongScales mainly does content updates;
   - If you **added layers** on the LoongScales side (no corresponding material in LoongBones before), these new images **won't auto-create slots** — they go into the LoongBones library's **Draft Box**;
-  - You need to **manually add the new material from the Draft Box to the Stage / bones** before it can be used in animation.
+  - You need to **manually add the new material from the Draft Box to the material library** before it can be used in animation.
 
 > In one phrase: the first sync "creates the project + places it on stage"; in later syncs, pure "new materials" only go to the draft box — whether to put them on stage is up to you, avoiding auto-placement that disrupts existing animation bindings.
-
-## Selective sync
-
-- You can **check** which layers participate in sync: only checked layers are pushed to LoongBones, or are overwritten/created by LoongBones.
-- Unchecked local layers are untouched; unchecked existing layers are not deleted.
 
 ## Sprite sheets & one-click split
 

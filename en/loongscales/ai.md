@@ -1,14 +1,13 @@
-# AI Assistant
+# AI Capabilities
 
-LoongScales has a built-in **AI assistant** for image generation, background removal and image splitting. It appears at the **bottom** of the interface.
+LoongScales has built-in **AI capabilities** for image generation, background removal and image splitting. It appears at the **bottom** of the interface.
 
 ## Open the AI panel
 
 - There is a floating **✨ AI Generate** pill button at the bottom of the interface.
 - Click it, or press **`Ctrl+K` (`⌘K` on Mac)** from anywhere, and the AI panel rises from the bottom.
 - The button can be dragged to the left/right edge of the canvas and auto-snaps; its position is remembered.
-- The button has 4 states: **Idle (blue breathing glow) / Generating (progress ring) / Done (red dot badge) / Error (red border)**. On success it briefly flashes the actual cost (e.g. `✨ -10`).
-- On first use a small arrow guides you "click to start AI generation"; it disappears after one click or a few seconds.
+- The button has 4 states: **Idle (blue breathing glow) / Generating (progress ring) / Done (red dot badge) / Error (red border)**.
 
 ## LoongCoins & balance
 
@@ -17,18 +16,18 @@ AI features consume an in-app token called **LoongCoins**.
 - The panel title bar always shows the current balance, e.g. `💰 1,234`.
 - The **estimated cost** is shown before each generation; when the balance is insufficient the button is disabled with a top-up prompt.
 - The balance is deducted automatically after a successful generation.
-- Click the **📜 Details** button in the title bar to view **LoongCoins details**: grouped by date, each row has a thumbnail, operation type, prompt summary, which layer it applied to, and cost (in red). You can also "regenerate with same params" or "delete the record".
+- Click the **📜 Details** button in the title bar to view **LoongCoins details**.
 
 ## Three main tabs
 
-The panel has three tabs: **Generate / Remove Background / Split Image**. (Under Generate you can also pick a specific model.)
+The panel has three capabilities: **Generate / Remove Background / Split Image**. (Under the Generate tab you can pick a specific model.)
 
 ### Generate (text-to-image / image-to-image)
 
 The generate form includes:
 
 - **Prompt**: describe the image you want in natural language.
-- **Reference layer**: `None` (pure text-to-image) or `Current selected layer` (transform an existing image).
+- **Reference layer**: `None` (pure text-to-image) or `Current selected layer` (image-to-image).
 - **Output location**:
   - **New layer**: result added as a new layer (default for text-to-image).
   - **Replace current layer**: result replaces the selected layer (auto-disabled when "no reference" is chosen).
@@ -49,15 +48,17 @@ The generate form includes:
 
 ### Remove background
 
-- Select a **raster layer**, then switch to the **Remove Background** tab (or click "Remove Background" in the context bar).
+- Select a **raster layer**, then click the **Remove Background** tab in the context bar.
 - One click cuts out the foreground and makes the background transparent; the result **replaces the current layer** (transform/position preserved).
 - Background removal also costs LoongCoins and is recorded; it can be **undone with one click (`Ctrl+Z`)**.
+- If you don't want to remove the background, click the **Remove Background** tab again to return to the Generate screen.
 
 ### Split image
 
-- Select a raster layer (usually a "combined image"), then switch to the **Split Image** tab.
+- Select a raster layer, then click the **Split Image** tab in the context bar.
 - AI splits one image into multiple independent parts and returns a **layered PSD**, which LoongScales imports automatically as multiple layers.
-- Especially useful for **Sprite Sheets** pulled from LoongBones: one click splits a combined image into body, arm and other sub-layers for individual retouching before syncing back.
+- Split Image uses the open-source framework [See-Through](https://github.com/shitagaki-lab/see-through): it decomposes a single image into fully inpainted, semantically independent layers and infers their drawing order — up to 23 layers, including hair, face, eyes, clothing, accessories, etc. It works best on cartoon portraits; other image types are not recommended.
+- If you don't want to split, click the **Split Image** tab again to return to the Generate screen.
 
 ## Generation history & "bring back what you deleted"
 

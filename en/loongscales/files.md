@@ -1,8 +1,8 @@
 # File Exchange: PSD & Local Save
 
-## Import PSD / PSB
+## Import PSD
 
-- The top toolbar has an **Import PSD** button (only accepts `.psd` / `.psb`).
+- The top toolbar has an **Import PSD** button (only accepts `.psd`).
 - On import it restores as much as possible: groups, raster, text, vector, fill, adjustment layers, layer masks, guides, blend modes, layer effects, clipping masks.
 - Unsupported adjustment types are skipped with a note — no error, no interruption.
 
@@ -13,8 +13,9 @@
 
 ## Local save & recovery
 
-- The document is **auto-saved** in the browser locally (IndexedDB), no manual save needed.
-- The whole document is a **self-contained JSON** with images embedded, openable offline as a single file.
+- The document is **auto-saved** in the browser locally (IndexedDB); data will be lost if you clear the browser cache.
+- The top toolbar has a **Save** button to save the document to the cloud database.
+- The whole document is a **self-contained JSON** with images embedded.
 - Refresh or reopen the page and the work recovers automatically.
 
-> Tip: local save depends on the browser database; for important works also export a PSD as backup.
+> Tip: if the browser cache data is corrupted, the document may fail to open; try clearing the browser cache.

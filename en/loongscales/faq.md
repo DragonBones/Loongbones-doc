@@ -1,10 +1,10 @@
 # FAQ
 
 **Q: Does LoongScales need to be installed?**
-A: No. It runs directly in the browser; it can also be embedded into host products like LoongBones.
+A: No. It runs directly in the browser.
 
 **Q: Will my work be lost?**
-A: No. The document is auto-saved in the browser's local database and survives refresh/close. For important works, also keep a PSD backup.
+A: No. The document is auto-saved in the browser's local database and survives refresh/close, but it disappears if you clear the browser cache. After you click the save button, the data is stored in the cloud database and will not be lost.
 
 **Q: Which layers can sync to LoongBones?**
 A: Only **raster layers** sync; text, vector, adjustment, fill, group do not.
@@ -22,7 +22,7 @@ A: Top up when the balance is insufficient; on failure read the reason on the bu
 A: Yes, and they are recorded in the LoongCoins details, viewable anytime.
 
 **Q: Can I continue my file in Photoshop?**
-A: Yes. Export PSD to open in PS; you can also import PS's PSD/PSB into LoongScales to keep editing.
+A: Yes. Export PSD to open in PS; you can also import PS's PSD into LoongScales to keep editing.
 
 **Q: How do I split a combined image into multiple layers?**
-A: Select the combined layer → the "Split Image" tab in the AI panel, or "One-click Split" in the Layers panel (for LoongBones sprite sheets).
+A: Select the combined layer → the "Split Image" tab in the AI panel, which intelligently splits a portrait into multiple layers. For sprite-sheet images, use the "One-click Split" button in the Layers panel to split the sprite sheet into separate images.
