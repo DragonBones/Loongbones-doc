@@ -3,9 +3,16 @@ import { search as zhSearch } from './zh'
 import { localeAssets } from '../plugins/localeAssets'
 import { isEnTarget, langOfSourcePath, localeUrl } from './target'
 
+// 构建期（sitemap、og:url）运行在 Node 里，拿不到 window.location.origin，只能用环境变量指定域名。
+// SITE_ORIGIN 由 package.json 的 build:cn / build:en 用 cross-env 注入（改域名改那里即可），
+// 也可以命令行临时覆盖：cross-env SITE_ORIGIN=https://test.xxx.com npm run build:cn
+// 未注入时兜底为官网域名，保证单独执行 `npx vitepress build` 也不会出错。
+// 浏览器里运行的脚本（下方 head script）则一律用 window.location.origin。
+const SITE_ORIGIN = process.env.SITE_ORIGIN || 'https://www.loongbones.com'
+
 export const shared = defineConfig({
   base: '/doc/',
-  title: '龙骨动画 | LoongBones',
+  title: 'LoongBones',
 
   // 目标语言占根路径，另一种语言下沉到 /<lang>/。规则按顺序匹配、命中即停，
   // 所以更具体的 loongbones 规则必须排在通用的 '<lang>/:rest*' 之前。
@@ -70,7 +77,7 @@ export const shared = defineConfig({
   },
 
   sitemap: {
-    hostname: 'https://www.loongbones.com',
+    hostname: SITE_ORIGIN,
     transformItems(items) {
       return items.filter((item) => !item.url.includes('migration'))
     }
@@ -98,7 +105,7 @@ export const shared = defineConfig({
         if (titleElement) {
           titleElement.style.cursor = 'pointer';
           titleElement.addEventListener('click', function() {
-            window.location.href = 'https://www.loongbones.com';
+            window.location.href = window.location.origin;
           });
         }
       }, 2000);
@@ -109,7 +116,7 @@ export const shared = defineConfig({
         if (titleElement) {
           titleElement.style.cursor = 'pointer';
           titleElement.addEventListener('click', function() {
-            window.location.href = 'https://www.loongbones.com';
+            window.location.href = window.location.origin;
           });
         }
       });
@@ -121,7 +128,7 @@ export const shared = defineConfig({
     ['meta', { property: 'og:title', content: '龙骨动画 | LoongBones' }],
     ['meta', { property: 'og:site_name', content: 'LoongBones' }],
     ['meta', { property: 'og:image', content: 'https://vitepress.dev/vitepress-og.jpg' }],
-    ['meta', { property: 'og:url', content: 'https://www.loongbones.com' }],
+    ['meta', { property: 'og:url', content: SITE_ORIGIN }],
     // ['script', { src: 'https://cdn.usefathom.com/script.js', 'data-site': 'AZBRSFGG', 'data-spa': 'auto', defer: '' }]
   ],
 
