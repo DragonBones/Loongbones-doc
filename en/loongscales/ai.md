@@ -57,7 +57,7 @@ The generate form includes:
 
 - Select a raster layer (usually a "combined image"), then switch to the **Split Image** tab.
 - AI splits one image into multiple independent parts and returns a **layered PSD**, which LoongScales imports automatically as multiple layers.
-- Especially useful for **Sprite Sheets** pulled from DragonBones: one click splits a combined image into body, arm and other sub-layers for individual retouching before syncing back.
+- Especially useful for **Sprite Sheets** pulled from LoongBones: one click splits a combined image into body, arm and other sub-layers for individual retouching before syncing back.
 
 ## Generation history & "bring back what you deleted"
 

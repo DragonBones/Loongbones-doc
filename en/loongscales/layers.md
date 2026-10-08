@@ -4,7 +4,7 @@ Layers are the core concept of LoongScales. Think of them as "sheets of transpar
 
 ## Six layer types (nodes)
 
-| Type | Description | Synced to DragonBones? |
+| Type | Description | Synced to LoongBones? |
 |---|---|---|
 | **Raster** | Pixel layer; hand-drawn / imported / AI-generated all land here | ✅ Yes (only synced type) |
 | **Text** | Editable text | ❌ |
@@ -13,7 +13,7 @@ Layers are the core concept of LoongScales. Think of them as "sheets of transpar
 | **Fill** | Solid color / gradient fill layer | ❌ |
 | **Group** | Pack multiple layers for management, with pass-through blending | ❌ |
 
-> Only **raster layers** sync to the DragonBones material library; text/vector/adjustment/fill/group do not (see Chapter 10).
+> Only **raster layers** sync to the LoongBones material library; text/vector/adjustment/fill/group do not (see Chapter 10).
 
 ## Layers panel operations
 
@@ -45,14 +45,14 @@ A mask uses "black/white/gray" to control where a layer shows or hides (white = 
 
 Shortcut `Ctrl+Alt+G` turns the current layer into a **clipping mask**: it only shows within the shape (alpha) of the layer below it. Exported to PSD it is kept as clipping.
 
-## DragonBones-protected layer
+## LoongBones-protected layer
 
-When a raster layer is bound to a DragonBones material, the Layers panel shows a **blue link icon 🔗**, meaning it is "still referenced by DragonBones". Such layers:
+When a raster layer is bound to a LoongBones material, the Layers panel shows a **blue link icon 🔗**, meaning it is "still referenced by LoongBones". Such layers:
 
-- **Cannot be deleted or merged down** (protects the DragonBones reference).
+- **Cannot be deleted or merged down** (protects the LoongBones reference).
 - The delete/merge buttons on the panel are greyed out automatically.
 
 <figure style="text-align:center">
   <img src="/loongscales/ui/layers-panel.png" alt="Layers panel" width="70%">
-  <figcaption>Layers panel: blend mode dropdown, opacity, mask thumbnail, blue link icon (bound to DragonBones).</figcaption>
+  <figcaption>Layers panel: blend mode dropdown, opacity, mask thumbnail, blue link icon (bound to LoongBones).</figcaption>
 </figure>

@@ -79,7 +79,7 @@ function nav(): DefaultTheme.NavItem[] {
         { text: 'Toolbox', link: `${P}/loongscales/tools` },
         { text: 'Layers', link: `${P}/loongscales/layers` },
         { text: 'AI Assistant', link: `${P}/loongscales/ai` },
-        { text: 'DragonBones Sync', link: `${P}/loongscales/loongbones-sync` }
+        { text: 'LoongBones Sync', link: `${P}/loongscales/loongbones-sync` }
       ]
     },
     {
@@ -280,11 +280,11 @@ function sidebarLoongscales(): DefaultTheme.SidebarItem[] {
       ]
     },
     {
-      text: 'AI & DragonBones',
+      text: 'AI & LoongBones',
       collapsed: false,
       items: [
         { text: 'AI Assistant', link: 'ai' },
-        { text: 'Working with DragonBones', link: 'loongbones-sync' }
+        { text: 'Working with LoongBones', link: 'loongbones-sync' }
       ]
     },
     {

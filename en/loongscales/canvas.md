@@ -10,8 +10,6 @@
 
 In the **Canvas** area of the right Layers panel you can set canvas width/height (range **64–4096 px**). Six preset groups are also provided — pick instead of typing:
 
-- **Paper**: A4/A5/A6/A7, B5, US Letter, etc. (at 300ppi)
-- **Business card**
 - **Web**: avatar, leaderboard, half-page, rectangle, skyscraper and other ad sizes
 - **Display**: XGA to DCI 4K
 - **Phone**: mainstream ratios like 18.5:9

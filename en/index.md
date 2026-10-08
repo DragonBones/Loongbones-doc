@@ -37,7 +37,7 @@ features:
     details: Supports multiple game platforms including Pixi, Cocos, Unity, Unreal, and it's really fast!
   - icon: 🐉
     title: LoongScales
-    details: A layer-based image editor in the browser, with built-in AI generation / background removal / image splitting, and two-way sync with DragonBones materials.
+    details: A layer-based image editor in the browser, with built-in AI generation / background removal / image splitting, and two-way sync with LoongBones materials.
 ---
 <style>
 :root {
