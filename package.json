@@ -4,14 +4,14 @@
   "type": "module",
   "scripts": {
     "dev": "vitepress dev",
-    "dev:cn": "vitepress dev --port 5173 --open /doc/",
-    "dev:en": "vitepress dev --port 5174 --open /doc/en/",
+    "dev:cn": "cross-env DOC_TARGET=cn vitepress dev --port 5173 --open /doc/",
+    "dev:en": "cross-env DOC_TARGET=en vitepress dev --port 5174 --open /doc/",
     "build": "npm run build:cn && npm run build:en",
     "build:cn": "cross-env DOC_TARGET=cn vitepress build",
     "build:en": "cross-env DOC_TARGET=en vitepress build",
     "preview": "vitepress preview",
-    "preview:cn": "vitepress preview --port 4173",
-    "preview:en": "vitepress preview --port 4174",
+    "preview:cn": "cross-env DOC_TARGET=cn vitepress preview --port 4173",
+    "preview:en": "cross-env DOC_TARGET=en vitepress preview --port 4174",
     "assets:check": "node .vitepress/scripts/check-assets.mjs",
     "lunaria:build": "lunaria build",
     "lunaria:open": "open-cli .vitepress/dist/_translations/index.html"

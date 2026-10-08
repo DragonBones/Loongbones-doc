@@ -1,25 +1,52 @@
 import { defineConfig } from 'vitepress'
 import { search as zhSearch } from './zh'
 import { localeAssets } from '../plugins/localeAssets'
+import { isEnTarget, langOfSourcePath, localeUrl } from './target'
 
 export const shared = defineConfig({
   base: '/doc/',
   title: '龙骨动画 | LoongBones',
 
-  rewrites: {
-    // 龙骨：物理目录下沉到 <lang>/loongbones，但 URL 保持旧的 /tutorial、/editor（零断链）
-    // 注意：root locale 用 ':rest*'（不带 /zh/），en 必须显式写出 'en/:rest*'，否则会和根 locale 同名 URL 碰撞。
-    'zh/loongbones/:rest*': ':rest*',
-    'en/loongbones/:rest*': 'en/:rest*',
-    // 龙鳞：物理目录 <lang>/loongscales，URL 用 /loongscales、/en/loongscales
-    'zh/loongscales/:rest*': 'loongscales/:rest*',
-    'en/loongscales/:rest*': 'en/loongscales/:rest*'
+  // 目标语言占根路径，另一种语言下沉到 /<lang>/。规则按顺序匹配、命中即停，
+  // 所以更具体的 loongbones 规则必须排在通用的 '<lang>/:rest*' 之前。
+  rewrites: isEnTarget
+    ? {
+        // 英文构建：英文占根路径（/doc/ 即英文首页），中文下沉到 /zh/
+        // 龙骨：物理目录 <lang>/loongbones，URL 用 /tutorial、/editor
+        'en/loongbones/:rest*': ':rest*',
+        'zh/loongbones/:rest*': 'zh/:rest*',
+        // 龙鳞：物理目录 <lang>/loongscales，URL 用 /loongscales、/zh/loongscales
+        'en/loongscales/:rest*': 'loongscales/:rest*',
+        'zh/loongscales/:rest*': 'zh/loongscales/:rest*',
+        // 其余（首页、runtime 等）
+        'en/:rest*': ':rest*'
+      }
+    : {
+        // 中文构建：中文占根路径（/doc/ 即中文首页），英文仍在 /en/
+        'zh/loongbones/:rest*': ':rest*',
+        'en/loongbones/:rest*': 'en/:rest*',
+        'zh/loongscales/:rest*': 'loongscales/:rest*',
+        'en/loongscales/:rest*': 'en/loongscales/:rest*',
+        'zh/:rest*': ':rest*'
+      },
+
+  // 首页 hero 按钮等链接写在 md frontmatter 里，无法随构建目标变化，这里统一按目标语言重写
+  transformPageData(pageData: any) {
+    const lang = langOfSourcePath(pageData?.filePath || '')
+    const actions = pageData?.frontmatter?.hero?.actions
+    if (Array.isArray(actions)) {
+      for (const action of actions) {
+        if (action && typeof action.link === 'string') {
+          action.link = localeUrl(lang, action.link)
+        }
+      }
+    }
   },
   // 默认主题：新访客默认浅色（中文站）；英文站由 head 脚本 + LocaleAppearance 组件按 lang 设为深色。
   // appearance 是顶层配置，VitePress 不支持按 locale 分别设置，故用初始值 light + 运行时补足深色。
   appearance: { initialValue: 'light' } as any,
   // 按语言分别输出，便于分别部署（产物均含双语，可在站内互切）
-  outDir: process.env.DOC_TARGET === 'en' ? '.vitepress/dist/en' : '.vitepress/dist/cn',
+  outDir: isEnTarget ? '.vitepress/dist/en' : '.vitepress/dist/cn',
   lastUpdated: true,
   cleanUrls: true,
   metaChunk: true,

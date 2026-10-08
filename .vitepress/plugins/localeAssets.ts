@@ -40,7 +40,12 @@ function resolveSrc(src: string, env: any, options: Required<LocaleAssetsOptions
   // 相对路径、外部链接、锚点等不做语言化处理
   if (!src.startsWith('/') || /^(https?:)?\/\//i.test(src)) return src
 
-  const relativePath: string = env?.relativePath || (env?.path ? path.relative(options.root, env.path) : '')
+  // 必须用「源文件路径」判断语言：env.relativePath / env.path 是 rewrites 之后的目标路径，
+  // 英文构建下英文页会被重写到根路径（tutorial/...），据此会误判成默认语言 zh 而取错图片。
+  const sourcePath: string = env?.realPath || env?.path || ''
+  const relativePath: string = sourcePath
+    ? path.relative(options.root, sourcePath)
+    : env?.relativePath || ''
   const lang = relativePath.startsWith('en/') ? 'en' : options.defaultLang
 
   const publicFile = (p: string) => path.join(options.root, 'public', p)

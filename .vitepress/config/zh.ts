@@ -1,8 +1,12 @@
 import { createRequire } from 'module'
 import { defineConfig, type DefaultTheme } from 'vitepress'
+import { prefix } from './target'
 
 const require = createRequire(import.meta.url)
 const pkg = require('vitepress/package.json')
+
+// 中文在产物中的 URL 前缀：build:cn 时为 ''（占根路径），build:en 时为 '/zh'
+const P = prefix('zh')
 
 export const zh = defineConfig({
   lang: 'zh-Hans',
@@ -12,9 +16,9 @@ export const zh = defineConfig({
     nav: nav(),
 
     sidebar: {
-      '/tutorial/': { base: '/tutorial/', items: sidebarTutorial() },
-      '/editor/': { base: '/editor/', items: sidebarEditor() },
-      '/loongscales/': { base: '/loongscales/', items: sidebarLoongscales() },
+      [`${P}/tutorial/`]: { base: `${P}/tutorial/`, items: sidebarTutorial() },
+      [`${P}/editor/`]: { base: `${P}/editor/`, items: sidebarEditor() },
+      [`${P}/loongscales/`]: { base: `${P}/loongscales/`, items: sidebarLoongscales() },
     },
 
     editLink: {
@@ -58,24 +62,24 @@ function nav(): DefaultTheme.NavItem[] {
   return [
     {
       text: '新手引导',
-      link: '/tutorial/index',
-      activeMatch: '/tutorial/'
+      link: `${P}/tutorial/index`,
+      activeMatch: `${P}/tutorial/`
     },
     {
       text: '编辑器文档',
-      link: '/editor/index',
-      activeMatch: '/editor/'
+      link: `${P}/editor/index`,
+      activeMatch: `${P}/editor/`
     },
     {
       text: '龙鳞 LoongScales',
-      activeMatch: '/loongscales/',
+      activeMatch: `${P}/loongscales/`,
       items: [
-        { text: '产品简介', link: '/loongscales/' },
-        { text: '快速上手', link: '/loongscales/quickstart' },
-        { text: '工具箱', link: '/loongscales/tools' },
-        { text: '图层系统', link: '/loongscales/layers' },
-        { text: 'AI 助手', link: '/loongscales/ai' },
-        { text: '与龙骨协同', link: '/loongscales/loongbones-sync' }
+        { text: '产品简介', link: `${P}/loongscales/` },
+        { text: '快速上手', link: `${P}/loongscales/quickstart` },
+        { text: '工具箱', link: `${P}/loongscales/tools` },
+        { text: '图层系统', link: `${P}/loongscales/layers` },
+        { text: 'AI 助手', link: `${P}/loongscales/ai` },
+        { text: '与龙骨协同', link: `${P}/loongscales/loongbones-sync` }
       ]
     },
     {
@@ -124,7 +128,7 @@ function sidebarTutorial(): DefaultTheme.SidebarItem[] {
         { text: '预览和导出', link: 'preview-publish' },
       ]
     },
-    { text: '学习更多', base: '/editor/', link: 'index' }
+    { text: '学习更多', base: `${P}/editor/`, link: 'index' }
   ]
 }
 

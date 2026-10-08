@@ -1,8 +1,12 @@
 import { createRequire } from 'module'
 import { defineConfig, type DefaultTheme } from 'vitepress'
+import { prefix } from './target'
 
 const require = createRequire(import.meta.url)
 const pkg = require('vitepress/package.json')
+
+// 英文在产物中的 URL 前缀：build:en 时为 ''（占根路径），build:cn 时为 '/en'
+const P = prefix('en')
 
 export const en = defineConfig({
   lang: 'en-US',
@@ -12,9 +16,9 @@ export const en = defineConfig({
     nav: nav(),
 
     sidebar: {
-      '/en/tutorial/': { base: '/en/tutorial/', items: sidebarTutorial() },
-      '/en/editor/': { base: '/en/editor/', items: sidebarEditor() },
-      '/en/loongscales/': { base: '/en/loongscales/', items: sidebarLoongscales() },
+      [`${P}/tutorial/`]: { base: `${P}/tutorial/`, items: sidebarTutorial() },
+      [`${P}/editor/`]: { base: `${P}/editor/`, items: sidebarEditor() },
+      [`${P}/loongscales/`]: { base: `${P}/loongscales/`, items: sidebarLoongscales() },
     },
 
     editLink: {
@@ -58,24 +62,24 @@ function nav(): DefaultTheme.NavItem[] {
   return [
     {
       text: 'Getting Started',
-      link: '/en/tutorial/index',
-      activeMatch: '/tutorial/'
+      link: `${P}/tutorial/index`,
+      activeMatch: `${P}/tutorial/`
     },
     {
       text: 'Editor Documentation',
-      link: '/en/editor/index',
-      activeMatch: '/editor/'
+      link: `${P}/editor/index`,
+      activeMatch: `${P}/editor/`
     },
     {
       text: 'LoongScales',
-      activeMatch: '/loongscales/',
+      activeMatch: `${P}/loongscales/`,
       items: [
-        { text: 'Overview', link: '/en/loongscales/' },
-        { text: 'Quick Start', link: '/en/loongscales/quickstart' },
-        { text: 'Toolbox', link: '/en/loongscales/tools' },
-        { text: 'Layers', link: '/en/loongscales/layers' },
-        { text: 'AI Assistant', link: '/en/loongscales/ai' },
-        { text: 'DragonBones Sync', link: '/en/loongscales/loongbones-sync' }
+        { text: 'Overview', link: `${P}/loongscales/` },
+        { text: 'Quick Start', link: `${P}/loongscales/quickstart` },
+        { text: 'Toolbox', link: `${P}/loongscales/tools` },
+        { text: 'Layers', link: `${P}/loongscales/layers` },
+        { text: 'AI Assistant', link: `${P}/loongscales/ai` },
+        { text: 'DragonBones Sync', link: `${P}/loongscales/loongbones-sync` }
       ]
     },
     {
@@ -124,7 +128,7 @@ function sidebarTutorial(): DefaultTheme.SidebarItem[] {
         { text: 'Preview and Export', link: 'preview-publish' },
       ]
     },
-    { text: 'Learn More', base: '/editor/', link: 'index' }
+    { text: 'Learn More', base: `${P}/editor/`, link: 'index' }
   ]
 }
 
