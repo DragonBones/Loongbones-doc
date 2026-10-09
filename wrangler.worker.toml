@@ -1,0 +1,16 @@
+# 部署到 Cloudflare Worker（静态资源）的配置。
+# 与 package.json 里的 `npm run deploy`（wrangler pages deploy）互不干扰：
+# 本文件专用于「Worker zip 上传」的命令行等价流程。
+#
+# 重要：name 必须与你在 Cloudflare 上已有的 Worker 名称一致，
+# 否则 wrangler 会新建一个 Worker 而不是更新现有的。
+name = "loongbones-doc-en-test"   # <<< 改成你的 Worker 名称
+
+compatibility_date = "2026-01-01"
+
+# 极简入口：把请求转发给静态资源（见 worker.js）
+main = "./worker.js"
+
+# assets.directory 指向 prepare-deploy.mjs 生成的 deploy/ 目录，
+# 部署内容 = 根 index.html + /doc/*，与你之前手动上传的 zip 完全一致。
+assets = { directory = "./deploy", binding = "ASSETS", not_found_handling = "single-page-application" }

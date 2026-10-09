@@ -14,7 +14,8 @@
     "preview:en": "cross-env DOC_TARGET=en vitepress preview --port 4174",
     "assets:check": "node .vitepress/scripts/check-assets.mjs",
     "lunaria:build": "lunaria build",
-    "lunaria:open": "open-cli .vitepress/dist/_translations/index.html"
+    "lunaria:open": "open-cli .vitepress/dist/_translations/index.html",
+    "deploy:en-test": "npm run build:en && node scripts/deploy-worker.mjs en"
   },
   "devDependencies": {
     "@lunariajs/core": "^0.1.1",
@@ -22,6 +23,7 @@
     "markdown-it-mathjax3": "^4.3.2",
     "open-cli": "^8.0.0",
     "postcss-rtlcss": "^5.5.1",
-    "vitepress": "^1.5.0"
+    "vitepress": "^1.5.0",
+    "wrangler": "^4.149.0"
   }
 }
