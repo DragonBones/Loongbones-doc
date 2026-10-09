@@ -15,7 +15,8 @@
     "assets:check": "node .vitepress/scripts/check-assets.mjs",
     "lunaria:build": "lunaria build",
     "lunaria:open": "open-cli .vitepress/dist/_translations/index.html",
-    "deploy:en-test": "npm run build:en && node scripts/deploy-worker.mjs en"
+    "deploy:en-test": "npm run build:en && node scripts/deploy-worker.mjs en",
+    "deploy:en": "npm run build:en && cross-env DEPLOY_ENV=prod DEPLOY_BRANCH=main node scripts/deploy-worker.mjs en"
   },
   "devDependencies": {
     "@lunariajs/core": "^0.1.1",

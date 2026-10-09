@@ -14,3 +14,8 @@ main = "./worker.js"
 # assets.directory 指向 prepare-deploy.mjs 生成的 deploy/ 目录，
 # 部署内容 = 根 index.html + /doc/*，与你之前手动上传的 zip 完全一致。
 assets = { directory = "./deploy", binding = "ASSETS", not_found_handling = "single-page-application" }
+
+# 生产环境（npm run deploy:en → wrangler deploy --env prod）：
+# 静态资源目录等同上面（继承顶层 assets），只是 Worker 名换成正式站。
+[env.prod]
+name = "loongbones-doc-en"

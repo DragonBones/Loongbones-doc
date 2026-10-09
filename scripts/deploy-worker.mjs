@@ -32,6 +32,23 @@ const args = process.argv.slice(2).filter((a) => !a.startsWith('--'))
 const dryRun = process.argv.includes('--dry-run')
 const target = (args[0] || process.env.DOC_TARGET || 'en').toLowerCase()
 
+// 部署环境：对应 wrangler.worker.toml 里的 [env.<name>]，决定部署到哪个 Worker。
+// 空 = 顶层 name（测试 Worker）；"prod" = 生产 Worker（loongbones-doc-en）
+const deployEnv = process.env.DEPLOY_ENV || ''
+
+// 分支保护：设置后，只有当前分支等于该值时才允许部署（生产部署要求 main）
+const requireBranch = process.env.DEPLOY_BRANCH || ''
+if (requireBranch) {
+  const currentBranch = git('git rev-parse --abbrev-ref HEAD')
+  if (currentBranch !== requireBranch) {
+    console.error(
+      `[deploy-worker] 当前分支是 "${currentBranch || '未知'}"，只有在 "${requireBranch}" 分支上才能部署，已中止。`,
+    )
+    process.exit(1)
+  }
+  console.log(`[deploy-worker] 分支检查通过：${currentBranch}`)
+}
+
 const commit = (git('git rev-parse HEAD') || '').slice(0, 7)
 const branch = git('git rev-parse --abbrev-ref HEAD')
 const dirty = git('git status --porcelain').length > 0 ? 'dirty' : 'clean'
@@ -57,6 +74,7 @@ const message = [
   .join(' · ')
 
 console.log(`[deploy-worker] deployment message: ${message}`)
+console.log(`[deploy-worker] 部署目标：${target}${deployEnv ? ` · env=${deployEnv}` : ' · env=(顶层/test)'}`)
 
 // 1) 整理目录（.vitepress/dist/<target> → deploy/，根 index.html + doc/）
 execSync(`node scripts/prepare-deploy.mjs ${target}`, { cwd: root, stdio: 'inherit' })
@@ -70,8 +88,9 @@ const wranglerBin = join(
   '.bin',
   process.platform === 'win32' ? 'wrangler.cmd' : 'wrangler',
 )
+const envArg = deployEnv ? ` --env ${deployEnv}` : ''
 const deployCmd =
-  `"${wranglerBin}" deploy --config wrangler.worker.toml --message ${JSON.stringify(message)}`
+  `"${wranglerBin}" deploy --config wrangler.worker.toml${envArg} --message ${JSON.stringify(message)}`
 if (dryRun) {
   console.log(`[deploy-worker] --dry-run：已跳过上传，将执行：\n${deployCmd}`)
   process.exit(0)
